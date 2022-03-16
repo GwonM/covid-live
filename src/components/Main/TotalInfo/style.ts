@@ -29,12 +29,6 @@ const TotalCount = styled.p<props>`
     color: ${(props) => props.ColorHEX};
 `;
 
-const IncDevWrap = styled.div<props>`
-    color: ${(props) => props.ColorHEX};
-    opacity: 0.2;
-    border-radius: 35px;
-`;
-
 const IncDec = styled.p<props>`
     font-size: 0.7rem;
     opacity: 0.9;
@@ -49,4 +43,4 @@ const IncDec = styled.p<props>`
     background-color: rgba(${(props) => props.colorRGB}, 0.15);
 `;
 
-export { Box, Name, TotalCount, IncDec, IncDevWrap };
+export { Box, Name, TotalCount, IncDec };
