@@ -19,7 +19,7 @@ const Logo = styled.div`
 const ListItem = styled.div<props>`
     display: flex;
     color: black;
-    padding: 1.2rem;
+    padding: 1rem;
     position: relative;
 
     &::before {

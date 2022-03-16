@@ -20,12 +20,8 @@ const LBox = styled.div`
 `;
 
 const RBox = styled.div`
-    border: 1px solid gray;
-    border-radius: 10px;
-    padding: 1rem;
     width: 30rem;
-
-    box-shadow: -2px 4px 12px 2px rgba(0, 0, 0, 0.3);
+    height: 1800px;
 `;
 
 export { Container, LBox, RBox };

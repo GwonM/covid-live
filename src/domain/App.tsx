@@ -5,6 +5,7 @@ import { GetLocationState } from "../service/LocationCovidState";
 import { LocationCovidStateType } from "../types/LocationCovidStateType";
 
 import Side from "../components/Side";
+import Main from "../components/Main";
 
 import * as S from "./style";
 import GlobalStyle from "../GlobalStyle";
@@ -39,7 +40,9 @@ export default function App(): JSX.Element {
                     <S.LBox>
                         <Side />
                     </S.LBox>
-                    <S.RBox></S.RBox>
+                    <S.RBox>
+                        <Main />
+                    </S.RBox>
                 </S.Container>
             </>
         );
