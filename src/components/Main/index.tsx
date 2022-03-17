@@ -4,15 +4,27 @@ import TotalInfo from "./TotalInfo";
 import TodayVsState from "./TodayVsState";
 import { redHex, redRGB, blueHex, blueRGB, grayHex, grayRGB } from "../../Common";
 import * as S from "./style";
+import { MainProps } from "../../types/MainPropsType";
 
-type Props = {};
-export default function Main(props: Props): JSX.Element {
+export default function Main(props: MainProps): JSX.Element {
     return (
         <>
             <MainCard>
                 <S.Totalitem>
-                    <TotalInfo name="확진자" TotalCount={7629275} incDec={400741} ColorHEX={redHex} ColorRGB={redRGB} />
-                    <TotalInfo name="사망자" TotalCount={11052} incDec={164} ColorHEX={grayHex} ColorRGB={grayRGB} />
+                    <TotalInfo
+                        name="확진자"
+                        TotalCount={props.TotalCount.decideCnt}
+                        incDec={props.incDec.decideCnt}
+                        ColorHEX={redHex}
+                        ColorRGB={redRGB}
+                    />
+                    <TotalInfo
+                        name="사망자"
+                        TotalCount={props.TotalCount.deathCnt}
+                        incDec={props.incDec.deathCnt}
+                        ColorHEX={grayHex}
+                        ColorRGB={grayRGB}
+                    />
                     <TotalInfo name="입원환자" TotalCount={2138} incDec={301} ColorHEX={blueHex} ColorRGB={blueRGB} />
                     <TotalInfo name="위중증자" TotalCount={1244} incDec={48} ColorHEX={grayHex} ColorRGB={grayRGB} />
                 </S.Totalitem>

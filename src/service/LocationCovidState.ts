@@ -26,7 +26,9 @@ export function getCovid19LocalState(params: Params): Promise<LocationCovidState
         //     .catch((err) => {
         //         reject(err.response);
         //     });
-        resolve(require("../data/LocationCovidStateData.json"));
+        setTimeout(() => {
+            resolve(require("../data/LocationCovidStateData.json"));
+        }, 1000);
     });
 }
 

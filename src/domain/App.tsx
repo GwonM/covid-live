@@ -9,30 +9,39 @@ import Main from "../components/Main";
 
 import * as S from "./style";
 import GlobalStyle from "../GlobalStyle";
+import { MainProps } from "../types/MainPropsType";
 
 export default function App(): JSX.Element {
-    const [dailyCovidState, setDailyCovidState] = useState<DailyCovidStateType>();
-    const [locationCovidState, setLocationCovidState] = useState<LocationCovidStateType>();
-    useEffect(() => {
-        let CovidStateParams: Params = {
-            pageNo: 1,
-            numOfRows: 10,
-            startCreateDt: 20200315,
-            endCreateDt: 20200315,
-        };
-        GetDailyState.getCovid19InfState(CovidStateParams).then((res: DailyCovidStateType) => {
-            // console.log(res);
-            setDailyCovidState(res);
-        });
+    const [mainProps, setMainProps] = useState<MainProps>();
+    let CovidStateParams: Params = {
+        pageNo: 1,
+        numOfRows: 10,
+        startCreateDt: 20220315,
+        endCreateDt: 20220316,
+    };
 
-        GetLocationState.getCovid19LocalState(CovidStateParams).then((res: LocationCovidStateType) => {
-            // console.log(res);
-            setLocationCovidState(res);
+    useEffect(() => {
+        let dailyCovidState: DailyCovidStateType;
+        let locationCovidState: LocationCovidStateType;
+        async function getData() {
+            dailyCovidState = await GetDailyState.getCovid19InfState(CovidStateParams);
+            locationCovidState = await GetLocationState.getCovid19LocalState(CovidStateParams);
+        }
+        getData().then(() => {
+            setMainProps({
+                TotalCount: {
+                    deathCnt: dailyCovidState?.items?.item![0].deathCnt!,
+                    decideCnt: dailyCovidState?.items?.item![0].decideCnt!,
+                },
+                incDec: {
+                    deathCnt: dailyCovidState?.items?.item![0].deathCnt! - dailyCovidState?.items?.item![1].deathCnt!,
+                    decideCnt: locationCovidState?.items?.item!.find((q) => q.gubun === "합계")!.incDec!,
+                },
+            });
         });
     }, []);
 
-    if (locationCovidState) {
-        console.log(locationCovidState);
+    if (mainProps) {
         return (
             <>
                 <GlobalStyle />
@@ -41,7 +50,7 @@ export default function App(): JSX.Element {
                         <Side />
                     </S.LBox>
                     <S.RBox>
-                        <Main />
+                        <Main TotalCount={mainProps?.TotalCount!} incDec={mainProps?.incDec!} />
                     </S.RBox>
                 </S.Container>
             </>

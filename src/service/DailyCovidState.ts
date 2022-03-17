@@ -11,22 +11,25 @@ export interface Params {
 }
 
 export function getCovid19InfState(params: Params): Promise<DailyCovidStateType> {
-    // let requestUrl = url;
-    // requestUrl += encodeURIComponent("serviceKey") + "=" + key.toString();
-    // requestUrl += "&" + encodeURIComponent("pageNo") + "=" + encodeURIComponent(params.pageNo);
-    // requestUrl += "&" + encodeURIComponent("numOfRows") + "=" + encodeURIComponent(params.numOfRows);
-    // requestUrl += "&" + encodeURIComponent("startCreateDt") + "=" + encodeURIComponent(params.startCreateDt);
-    // requestUrl += "&" + encodeURIComponent("endCreateDt") + "=" + encodeURIComponent(params.endCreateDt);
+    let requestUrl = url;
+    requestUrl += encodeURIComponent("serviceKey") + "=" + key.toString();
+    requestUrl += "&" + encodeURIComponent("pageNo") + "=" + encodeURIComponent(params.pageNo);
+    requestUrl += "&" + encodeURIComponent("numOfRows") + "=" + encodeURIComponent(params.numOfRows);
+    requestUrl += "&" + encodeURIComponent("startCreateDt") + "=" + encodeURIComponent(params.startCreateDt);
+    requestUrl += "&" + encodeURIComponent("endCreateDt") + "=" + encodeURIComponent(params.endCreateDt);
     return new Promise<DailyCovidStateType>((resolve, reject) => {
         // axios
         //     .get(requestUrl)
         //     .then((res) => {
-        //         resolve(res.data);
+        //         // console.log("real", res);
+        //         resolve(res.data.response.body);
         //     })
         //     .catch((err) => {
         //         reject(err.response);
         //     });
-        resolve(require("../data/DailyCovidStataData.json"));
+        setTimeout(() => {
+            resolve(require("../data/DailyCovidStataData.json"));
+        }, 1000);
     });
 }
 
