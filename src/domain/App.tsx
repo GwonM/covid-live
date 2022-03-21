@@ -3,7 +3,6 @@ import { GetDailyState, Params } from "../service/DailyCovidState";
 import { DailyCovidStateType } from "../types/DailyCovidStateType";
 import { GetLocationState } from "../service/LocationCovidState";
 import { LocationCovidStateType } from "../types/LocationCovidStateType";
-
 import Side from "../components/Side";
 import Main from "../components/Main";
 
@@ -13,16 +12,17 @@ import { MainProps } from "../types/MainPropsType";
 
 export default function App(): JSX.Element {
     const [mainProps, setMainProps] = useState<MainProps>();
-    let CovidStateParams: Params = {
-        pageNo: 1,
-        numOfRows: 10,
-        startCreateDt: 20220315,
-        endCreateDt: 20220316,
-    };
 
     useEffect(() => {
+        let CovidStateParams: Params = {
+            pageNo: 1,
+            numOfRows: 10,
+            startCreateDt: 20220315,
+            endCreateDt: 20220316,
+        };
         let dailyCovidState: DailyCovidStateType;
         let locationCovidState: LocationCovidStateType;
+
         async function getData() {
             dailyCovidState = await GetDailyState.getCovid19InfState(CovidStateParams);
             locationCovidState = await GetLocationState.getCovid19LocalState(CovidStateParams);
@@ -37,6 +37,16 @@ export default function App(): JSX.Element {
                     deathCnt: dailyCovidState?.items?.item![0].deathCnt! - dailyCovidState?.items?.item![1].deathCnt!,
                     decideCnt: locationCovidState?.items?.item!.find((q) => q.gubun === "합계")!.incDec!,
                 },
+                TodayCount: {
+                    today: locationCovidState?.items?.item!.find((q) => q.gubun === "합계")!.incDec!,
+                    yesterday: 0,
+                    OneWeekAgo: 0,
+                    TwoWeeksAgo: 0,
+                    ThreeWeeksAgo: 0,
+                },
+                LocalState: {
+                    item: locationCovidState.items?.item!,
+                },
             });
         });
     }, []);
@@ -50,7 +60,7 @@ export default function App(): JSX.Element {
                         <Side />
                     </S.LBox>
                     <S.RBox>
-                        <Main TotalCount={mainProps?.TotalCount!} incDec={mainProps?.incDec!} />
+                        <Main Main={mainProps} />
                     </S.RBox>
                 </S.Container>
             </>

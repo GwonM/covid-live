@@ -3,7 +3,6 @@ import styled from "styled-components";
 const Container = styled.div`
     padding: 2.5rem 0;
     height: max-content;
-    width: 100vw;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -20,8 +19,7 @@ const LBox = styled.div`
 `;
 
 const RBox = styled.div`
-    width: 30rem;
-    height: 1800px;
+    width: 35rem;
 `;
 
 export { Container, LBox, RBox };

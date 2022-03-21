@@ -21,12 +21,12 @@ export default function Side(): JSX.Element {
                     백신
                 </S.ListItem>
             </SideCard>
-            <SideCard isLogo={false}>
+            {/* <SideCard isLogo={false}>
                 <S.Logo>COVID LIVE</S.Logo>
             </SideCard>
             <SideCard isLogo={false}>
                 <S.Logo>COVID LIVE</S.Logo>
-            </SideCard>
+            </SideCard> */}
         </>
     );
 }

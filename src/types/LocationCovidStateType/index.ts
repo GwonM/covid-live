@@ -1,13 +1,13 @@
-export type LocationCovidStateType = {
+export interface LocationCovidStateType {
     items?: Items;
     numOfRows?: number;
     pageNo?: number;
     totalCount?: number;
-};
-export type Items = {
+}
+export interface Items {
     item?: LocationItem[] | null;
-};
-export type LocationItem = {
+}
+export interface LocationItem {
     createDt: string;
     deathCnt: number;
     defCnt: number;
@@ -21,4 +21,4 @@ export type LocationItem = {
     seq: number;
     stdDay: string;
     updateDt: string;
-};
+}
