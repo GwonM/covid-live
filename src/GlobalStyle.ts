@@ -10,8 +10,12 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     line-height: 1;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
   }
-  
+
   ::-webkit-scrollbar {
     display: none !important;
   }
