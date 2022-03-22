@@ -5,10 +5,15 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     padding:0;
     margin:0;
+    text-decoration : none;
   }
 
   body {
     line-height: 1;
+  }
+  
+  ::-webkit-scrollbar {
+    display: none !important;
   }
 `;
 

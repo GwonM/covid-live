@@ -1,7 +1,7 @@
 import { Items } from "../LocationCovidStateType";
 
 export type Props = {
-    Main: MainProps;
+    Main?: MainProps;
 };
 export type MainProps = {
     TotalCount: TypeOfTotal;

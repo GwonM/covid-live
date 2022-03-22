@@ -1,7 +1,11 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 type props = {
     bg: string;
+};
+
+type orderProps = {
+    order: string;
 };
 
 type textProps = {
@@ -18,24 +22,43 @@ const Table = styled.div`
     grid-template-columns: 0.6fr 1.5fr 1.5fr 1.5fr;
 `;
 
-const Title = styled.div`
+const Title = styled.div<orderProps>`
+    cursor: pointer;
+    display: flex;
     margin: 0.4rem;
-
     padding: 0.5rem 0.5rem 0 0.5rem;
     color: #868686;
     font-size: 0.6875rem;
     font-weight: bold;
+    &::after {
+        ${(props) =>
+            props.order === "ASC" &&
+            css`
+                content: "↑";
+            `}
+        ${(props) =>
+            props.order === "DESC" &&
+            css`
+                content: "↓";
+            `}
+    }
+    &:first-child {
+        justify-content: center;
+    }
 `;
 
 const Box = styled.div<props>`
     display: flex;
     align-items: center;
     text-align: left;
-
     background-color: ${(props) => props.bg};
     padding: 0.6rem 0.5rem;
     margin: 0.4rem;
     border-radius: 0.5rem;
+
+    &:first-child {
+        justify-content: center;
+    }
 `;
 
 const Text = styled.div<textProps>`
@@ -46,13 +69,15 @@ const Text = styled.div<textProps>`
     ${(props) =>
         props.isLocation
             ? ""
-            : `&::after {
-        content: "명";
-        margin-left: 0.1rem;
-        color: #868686;
-        font-size: 0.4rem;
-        font-weight: bold;
-    }`}
+            : css`
+                  &::after {
+                      content: "명";
+                      margin-left: 0.1rem;
+                      color: #868686;
+                      font-size: 0.4rem;
+                      font-weight: bold;
+                  }
+              `}
 `;
 
 const incCount = styled.p<incProps>`

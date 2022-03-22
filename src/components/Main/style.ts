@@ -18,7 +18,7 @@ const TodayLBox = styled.div`
     text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 0.625rem; ;
+    gap: 0.625rem;
 `;
 const TodayVsLastday = styled.div`
     display: flex;
@@ -26,4 +26,12 @@ const TodayVsLastday = styled.div`
     justify-content: space-between;
 `;
 
-export { Totalitem, TodayItem, TodayLBox, TodayVsLastday };
+const ErrorMessage = styled.div`
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.625rem;
+`;
+
+export { Totalitem, TodayItem, TodayLBox, TodayVsLastday, ErrorMessage };

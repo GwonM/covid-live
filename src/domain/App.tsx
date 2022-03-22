@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+
 import { GetDailyState, Params } from "../service/DailyCovidState";
 import { DailyCovidStateType } from "../types/DailyCovidStateType";
 import { GetLocationState } from "../service/LocationCovidState";
 import { LocationCovidStateType } from "../types/LocationCovidStateType";
 import Side from "../components/Side";
 import Main from "../components/Main";
+import MainCard from "../components/Main/MainCard/MainCard";
+import { ErrorMessage } from "../components/Main/style";
 
 import * as S from "./style";
 import GlobalStyle from "../GlobalStyle";
@@ -55,14 +59,28 @@ export default function App(): JSX.Element {
         return (
             <>
                 <GlobalStyle />
-                <S.Container>
-                    <S.LBox>
-                        <Side />
-                    </S.LBox>
-                    <S.RBox>
-                        <Main Main={mainProps} />
-                    </S.RBox>
-                </S.Container>
+                <BrowserRouter>
+                    <S.Container>
+                        <S.LBox>
+                            <Side />
+                        </S.LBox>
+                        <S.RBox>
+                            <Routes>
+                                <Route path="/" element={<Main Main={mainProps} />} />
+                                <Route path="/world" element={<Main />} />
+                                <Route path="/vaccine" element={<Main />} />
+                                <Route
+                                    path="*"
+                                    element={
+                                        <MainCard>
+                                            <ErrorMessage>NotFound</ErrorMessage>
+                                        </MainCard>
+                                    }
+                                />
+                            </Routes>
+                        </S.RBox>
+                    </S.Container>
+                </BrowserRouter>
             </>
         );
     } else {
