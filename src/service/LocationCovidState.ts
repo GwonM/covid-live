@@ -18,17 +18,17 @@ export function getCovid19LocalState(params: Params): Promise<LocationCovidState
     requestUrl += "&" + encodeURIComponent("startCreateDt") + "=" + encodeURIComponent(params.startCreateDt);
     requestUrl += "&" + encodeURIComponent("endCreateDt") + "=" + encodeURIComponent(params.endCreateDt);
     return new Promise<LocationCovidStateType>((resolve, reject) => {
-        // axios
-        //     .get(requestUrl)
-        //     .then((res) => {
-        //         resolve(res.data.response.body);
-        //     })
-        //     .catch((err) => {
-        //         reject(err.response);
-        //     });
-        setTimeout(() => {
-            resolve(require("../data/LocationCovidStateData.json"));
-        }, 1000);
+        axios
+            .get(requestUrl)
+            .then((res) => {
+                resolve(res.data.response.body);
+            })
+            .catch((err) => {
+                reject(err.response);
+            });
+        // setTimeout(() => {
+        //     resolve(require("../data/LocationCovidStateData.json"));
+        // }, 1000);
     });
 }
 

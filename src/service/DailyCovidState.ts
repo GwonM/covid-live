@@ -18,18 +18,18 @@ export function getCovid19InfState(params: Params): Promise<DailyCovidStateType>
     requestUrl += "&" + encodeURIComponent("startCreateDt") + "=" + encodeURIComponent(params.startCreateDt);
     requestUrl += "&" + encodeURIComponent("endCreateDt") + "=" + encodeURIComponent(params.endCreateDt);
     return new Promise<DailyCovidStateType>((resolve, reject) => {
-        // axios
-        //     .get(requestUrl)
-        //     .then((res) => {
-        //         // console.log("real", res);
-        //         resolve(res.data.response.body);
-        //     })
-        //     .catch((err) => {
-        //         reject(err.response);
-        //     });
-        setTimeout(() => {
-            resolve(require("../data/DailyCovidStataData.json"));
-        }, 1000);
+        axios
+            .get(requestUrl)
+            .then((res) => {
+                // console.log("real", res);
+                resolve(res.data.response.body);
+            })
+            .catch((err) => {
+                reject(err.response);
+            });
+        // setTimeout(() => {
+        //     resolve(require("../data/DailyCovidStataData.json"));
+        // }, 1000);
     });
 }
 

@@ -37,8 +37,7 @@ export default function LocationState(props: Items): JSX.Element {
     };
 
     useEffect(() => {
-        let today = moment().format("YYYY년 MM월 DD일");
-        today = "2022년 03월 16일";
+        let today = moment().subtract(1, "d").format("YYYY년 MM월 DD일");
 
         let filterLocationState: Items = {
             item: props.item?.filter((q) => q.stdDay.includes(today) && q.gubun !== "합계").sort((a, b) => b.incDec - a.incDec),
